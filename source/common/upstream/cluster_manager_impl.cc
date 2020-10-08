@@ -302,6 +302,8 @@ ClusterManagerImpl::ClusterManagerImpl(
   // This is the only point where distinction between delta ADS and state-of-the-world ADS is made.
   // After here, we just have a GrpcMux interface held in ads_mux_, which hides
   // whether the backing implementation is delta or SotW.
+  ENVOY_LOG(debug, "!!!!!!!!!!!!!! DECOSTE: has_ads_config={}", dyn_resources.has_ads_config());
+
   if (dyn_resources.has_ads_config()) {
     if (dyn_resources.ads_config().api_type() ==
         envoy::config::core::v3::ApiConfigSource::DELTA_GRPC) {
