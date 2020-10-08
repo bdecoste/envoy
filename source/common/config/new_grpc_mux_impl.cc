@@ -120,7 +120,11 @@ void NewGrpcMuxImpl::kickOffAck(UpdateAck ack) {
 }
 
 // TODO(fredlas) to be removed from the GrpcMux interface very soon.
-void NewGrpcMuxImpl::start() { grpc_stream_.establishNewStream(); }
+void NewGrpcMuxImpl::start() {
+  ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: grpc_stream_.establishNewStream");
+  grpc_stream_.establishNewStream();
+  ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: done grpc_stream_.establishNewStream");
+}
 
 GrpcMuxWatchPtr NewGrpcMuxImpl::addWatch(const std::string& type_url,
                                          const std::set<std::string>& resources,

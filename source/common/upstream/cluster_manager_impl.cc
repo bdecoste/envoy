@@ -372,7 +372,7 @@ ClusterManagerImpl::ClusterManagerImpl(
                 Event::Dispatcher& dispatcher) -> ThreadLocal::ThreadLocalObjectSharedPtr {
     return std::make_shared<ThreadLocalClusterManagerImpl>(*this, dispatcher, local_cluster_name);
   });
-
+  ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: has_cds_config={}", dyn_resources.has_cds_config());
   // We can now potentially create the CDS API once the backing cluster exists.
   if (dyn_resources.has_cds_config()) {
     cds_api_ = factory_.createCds(dyn_resources.cds_config(), *this);
@@ -391,7 +391,7 @@ ClusterManagerImpl::ClusterManagerImpl(
   // Potentially move to secondary initialization on the static bootstrap clusters if all primary
   // clusters have already initialized. (E.g., if all static).
   init_helper_.onStaticLoadComplete();
-
+  ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: ads_mux start");
   ads_mux_->start();
 }
 
