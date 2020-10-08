@@ -87,6 +87,7 @@ AsyncStreamImpl::AsyncStreamImpl(AsyncClientImpl& parent, AsyncClient::StreamCal
       route_(std::make_shared<RouteImpl>(parent_.cluster_->name(), options.timeout,
                                          options.hash_policy)),
       send_xff_(options.send_xff) {
+  ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: new AsyncStreamImpl ");
   if (options.buffer_body_for_retry) {
     buffered_body_ = std::make_unique<Buffer::OwnedImpl>();
   }

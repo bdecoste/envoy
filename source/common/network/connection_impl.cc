@@ -60,7 +60,7 @@ ConnectionImpl::ConnectionImpl(Event::Dispatcher& dispatcher, ConnectionSocketPt
   // Treat the lack of a valid fd (which in practice only happens if we run out of FDs) as an OOM
   // condition and just crash.
   RELEASE_ASSERT(SOCKET_VALID(ConnectionImpl::ioHandle().fd()), "");
-
+  ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: new ConnectionImpl");
   if (!connected) {
     connecting_ = true;
   }
