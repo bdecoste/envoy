@@ -73,8 +73,8 @@ AsyncClient::Request* AsyncClientImpl::send(RequestMessagePtr&& request,
 
 AsyncClient::Stream* AsyncClientImpl::start(AsyncClient::StreamCallbacks& callbacks,
                                             const AsyncClient::StreamOptions& options) {
-  ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: AsyncClientImpl::start");
   std::unique_ptr<AsyncStreamImpl> new_stream{new AsyncStreamImpl(*this, callbacks, options)};
+  ENVOY_LOG(info, "!!!!!!!!!!!!!! DECOSTE: AsyncClientImpl::start");
   new_stream->moveIntoList(std::move(new_stream), active_streams_);
   return active_streams_.front().get();
 }
