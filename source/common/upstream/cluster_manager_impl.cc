@@ -340,8 +340,8 @@ ClusterManagerImpl::ClusterManagerImpl(
                     "StreamAggregatedResources"),
           dyn_resources.ads_config().transport_api_version(), random_, stats_,
           Envoy::Config::Utility::parseRateLimitSettings(dyn_resources.ads_config()),
-          ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: call set_node_on_first_message_only");
           bootstrap.dynamic_resources().ads_config().set_node_on_first_message_only());
+      ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: made ads_mux");
     }
   } else {
     ads_mux_ = std::make_unique<Config::NullGrpcMuxImpl>();
