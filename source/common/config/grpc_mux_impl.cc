@@ -28,7 +28,11 @@ GrpcMuxImpl::GrpcMuxImpl(const LocalInfo::LocalInfo& local_info,
   Config::Utility::checkLocalInfo("ads", local_info);
 }
 
-void GrpcMuxImpl::start() { grpc_stream_.establishNewStream(); }
+void GrpcMuxImpl::start() {
+  ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: grpc_stream_.establishNewStream");
+  grpc_stream_.establishNewStream();
+  ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: done grpc_stream_.establishNewStream");
+}
 
 void GrpcMuxImpl::sendDiscoveryRequest(const std::string& type_url) {
   if (!grpc_stream_.grpcStreamAvailable()) {
