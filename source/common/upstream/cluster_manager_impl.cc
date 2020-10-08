@@ -302,7 +302,7 @@ ClusterManagerImpl::ClusterManagerImpl(
   // This is the only point where distinction between delta ADS and state-of-the-world ADS is made.
   // After here, we just have a GrpcMux interface held in ads_mux_, which hides
   // whether the backing implementation is delta or SotW.
-  ENVOY_LOG(debug, "!!!!!!!!!!!!!! DECOSTE: has_ads_config={}", dyn_resources.has_ads_config());
+  ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: has_ads_config={}", dyn_resources.has_ads_config());
 
   if (dyn_resources.has_ads_config()) {
     if (dyn_resources.ads_config().api_type() ==
@@ -340,6 +340,7 @@ ClusterManagerImpl::ClusterManagerImpl(
                     "StreamAggregatedResources"),
           dyn_resources.ads_config().transport_api_version(), random_, stats_,
           Envoy::Config::Utility::parseRateLimitSettings(dyn_resources.ads_config()),
+          ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: call set_node_on_first_message_only");
           bootstrap.dynamic_resources().ads_config().set_node_on_first_message_only());
     }
   } else {
