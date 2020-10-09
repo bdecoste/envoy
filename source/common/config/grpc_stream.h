@@ -45,11 +45,13 @@ public:
   }
 
   void establishNewStream() {
+    ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: establishNewStream: is null:{}",stream_ != nullptr);
     ENVOY_LOG(debug, "Establishing new gRPC bidi stream for {}", service_method_.DebugString());
     if (stream_ != nullptr) {
       ENVOY_LOG(warn, "gRPC bidi stream for {} already exists!", service_method_.DebugString());
       return;
     }
+    ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: async_client start");
     stream_ = async_client_->start(service_method_, *this, Http::AsyncClient::StreamOptions());
     if (stream_ == nullptr) {
       ENVOY_LOG(warn, "Unable to establish new stream");

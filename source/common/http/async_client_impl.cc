@@ -45,7 +45,9 @@ AsyncClientImpl::AsyncClientImpl(Upstream::ClusterInfoConstSharedPtr cluster,
     : cluster_(cluster), config_("http.async-client.", local_info, stats_store, cm, runtime, random,
                                  std::move(shadow_writer), true, false, false, false, {},
                                  dispatcher.timeSource(), http_context),
-      dispatcher_(dispatcher) {}
+      dispatcher_(dispatcher) {
+  ENVOY_LOG(error, "!!!!!!!!!!!!!! DECOSTE: new AsyncClientImpl ");
+}
 
 AsyncClientImpl::~AsyncClientImpl() {
   while (!active_streams_.empty()) {
